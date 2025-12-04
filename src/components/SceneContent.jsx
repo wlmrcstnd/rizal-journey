@@ -13,34 +13,34 @@ const SceneContent = ({
   handleChoiceClick
 }) => {
   return (
-    <div className="bg-slate-800/70 backdrop-blur-lg rounded-2xl p-8 shadow-2xl animate-fadeIn">
+    <div className="bg-slate-800/70 backdrop-blur-lg rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl animate-fadeIn">
       {/* Scene Header */}
-      <div className={`bg-gradient-to-r ${getEndingColor()} rounded-xl p-6 mb-6 text-center`}>
-        <h2 className="text-3xl font-bold text-white mb-2">
+      <div className={`bg-gradient-to-r ${getEndingColor()} rounded-lg sm:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 text-center`}>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
           {scene.title}
         </h2>
-        <p className="text-white/90 text-lg">
+        <p className="text-white/90 text-base sm:text-lg">
           📅 {scene.year}
         </p>
         {lockedChoices.includes(currentScene) && (
-          <div className="mt-3 inline-block bg-green-500 text-white px-4 py-2 rounded-lg font-semibold">
+          <div className="mt-3 inline-block bg-green-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base font-semibold">
             🔒 Historical Path - Choice Locked
           </div>
         )}
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Main Story */}
-        <div className="bg-slate-700/50 rounded-xl p-6 border-l-4 border-purple-500">
+        <div className="bg-slate-700/50 rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-purple-500">
           <p className="text-xs font-bold text-purple-300 mb-2">📜 MAIN STORY:</p>
-          <p className="text-white text-base leading-relaxed">
+          <p className="text-white text-sm sm:text-base leading-relaxed">
             {scene.story}
           </p>
         </div>
 
         {/* Historical Context */}
         {scene.context && (
-          <div className="bg-indigo-900/30 rounded-xl p-6 border-l-4 border-indigo-400">
+          <div className="bg-indigo-900/30 rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-indigo-400">
             <p className="text-xs font-bold text-indigo-300 mb-2">📚 HISTORICAL CONTEXT:</p>
             <p className="text-indigo-100 text-sm leading-relaxed">
               {scene.context}
@@ -50,7 +50,7 @@ const SceneContent = ({
 
         {/* Additional Info (Deeper Knowledge) */}
         {scene.additionalInfo && (
-          <div className="bg-purple-900/30 rounded-xl p-6 border-l-4 border-purple-400">
+          <div className="bg-purple-900/30 rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-purple-400">
             <p className="text-xs font-bold text-purple-300 mb-2">📖 DEEPER KNOWLEDGE:</p>
             <p className="text-purple-100 text-sm leading-relaxed">
               {scene.additionalInfo}
@@ -60,7 +60,7 @@ const SceneContent = ({
 
         {/* Impact (for endings) */}
         {scene.impact && (
-          <div className="bg-slate-800/50 rounded-xl p-5">
+          <div className="bg-slate-800/50 rounded-lg sm:rounded-xl p-4 sm:p-5">
             <p className="text-xs font-bold text-slate-300 mb-2">💥 IMPACT:</p>
             <p className="text-slate-100 text-sm leading-relaxed">
               {scene.impact}
@@ -172,21 +172,21 @@ const SceneContent = ({
 
         {/* Choices */}
         {scene.choices && !scene.isEnding && !showConfirmation && (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {shuffleArray(scene.choices).map((choice, index) => (
               <button
                 key={choice.id}
                 onClick={() => handleChoiceClick(choice)}
-                className="choice-btn w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-purple-700 hover:to-indigo-700 border-2 border-slate-600 hover:border-purple-400 rounded-xl p-5 text-left transition-all animate-slideIn"
+                className="choice-btn w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-purple-700 hover:to-indigo-700 border-2 border-slate-600 hover:border-purple-400 rounded-lg sm:rounded-xl p-4 sm:p-5 text-left transition-all animate-slideIn active:scale-98"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">{choice.icon}</span>
-                  <div className="flex-1">
-                    <p className="text-white font-semibold text-lg mb-1">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <span className="text-2xl sm:text-3xl flex-shrink-0">{choice.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white font-semibold text-base sm:text-lg mb-1">
                       {choice.text}
                     </p>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-gray-400 text-xs sm:text-sm">
                       Choose this path →
                     </p>
                   </div>
@@ -198,13 +198,13 @@ const SceneContent = ({
 
         {/* Ending Message */}
         {scene.isEnding && (
-          <div className="bg-gradient-to-r from-purple-900 to-indigo-900 rounded-xl p-6 text-center border-2 border-purple-400">
-            <p className="text-2xl font-bold text-white mb-2">
+          <div className="bg-gradient-to-r from-purple-900 to-indigo-900 rounded-lg sm:rounded-xl p-4 sm:p-6 text-center border-2 border-purple-400">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
               {endingReached === 'ideal' && '⭐ IDEAL ENDING ACHIEVED! ⭐'}
               {endingReached === 'neutral' && '⚖️ NEUTRAL ENDING'}
               {endingReached === 'bad' && '💔 CAUTIONARY ENDING'}
             </p>
-            <p className="text-purple-200 text-sm">
+            <p className="text-purple-200 text-xs sm:text-sm">
               Your journey has concluded. Click "🔄 Restart" to try different choices and discover other paths through history.
             </p>
           </div>
